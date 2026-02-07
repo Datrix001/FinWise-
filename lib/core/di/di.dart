@@ -1,4 +1,7 @@
 import 'package:finwise2/features/auth/data/datasources/auth_remote_datasources.dart';
+import 'package:finwise2/features/auth/data/repository/auth_repository.dart';
+import 'package:finwise2/features/auth/data/repository/auth_repository_impl.dart';
+import 'package:finwise2/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -9,5 +12,11 @@ Future<void> loadDependencies() async {
 
   getIt.registerLazySingleton<AuthRemoteDatasources>(
     () => AuthRemoteDatasources(client: getIt<SupabaseClient>()),
+  );
+  getIt.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(remoteDatasources: getIt<AuthRemoteDatasources>()),
+  );
+  getIt.registerFactory<AuthCubit>(
+    () => AuthCubit(repository: getIt<AuthRepository>()),
   );
 }

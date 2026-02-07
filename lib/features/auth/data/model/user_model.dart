@@ -1,5 +1,3 @@
-import 'package:json_annotation/json_annotation.dart';
-
 class UserModel {
   final String email;
   final String password;
