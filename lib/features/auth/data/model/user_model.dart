@@ -3,9 +3,5 @@ class UserModel {
   final String password;
   final String? fullName;
 
-  UserModel({
-    required this.email,
-    required this.password,
-    required this.fullName,
-  });
+  UserModel({required this.email, required this.password, this.fullName});
 }

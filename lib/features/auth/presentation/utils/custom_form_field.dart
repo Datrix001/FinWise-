@@ -27,7 +27,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
 
   @override
   void initState() {
-    isObscure = ValueNotifier(widget.isPass);
+    isObscure = ValueNotifier(widget.isPass ? true : false);
     super.initState();
   }
 
@@ -71,5 +71,11 @@ class _CustomFormFieldState extends State<CustomFormField> {
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    isObscure.dispose();
+    super.dispose();
   }
 }

@@ -2,11 +2,14 @@ import 'package:finwise2/features/auth/data/model/user_model.dart';
 import 'package:finwise2/features/auth/data/repository/auth_repository.dart';
 import 'package:finwise2/features/auth/presentation/cubit/auth_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' hide AuthState;
 
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepository repository;
 
-  AuthCubit({required this.repository}) : super(AuthInitialState());
+  AuthCubit({required this.repository}) : super(AuthInitialState()) {
+    _listenToAuthChanges();
+  }
 
   Future<void> signOut() async {
     emit(AuthLoadingState());
@@ -22,7 +25,6 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoadingState());
     try {
       await repository.signInWithEmailAndPassWord(model);
-      emit(AuthAuthenticated());
     } catch (e) {
       emit(AuthFailureState(errorMessage: e.toString()));
     }
@@ -32,9 +34,30 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoadingState());
     try {
       await repository.signUpWithEmailAndPassword(model);
-      emit(AuthAuthenticated());
     } catch (e) {
       emit(AuthFailureState(errorMessage: e.toString()));
     }
+  }
+
+  void _listenToAuthChanges() {
+    final supabase = Supabase.instance.client;
+
+    final session = supabase.auth.currentSession;
+
+    if (session != null) {
+      emit(AuthAuthenticated());
+    } else {
+      emit(AuthUnAuthenticated());
+    }
+
+    supabase.auth.onAuthStateChange.listen((data) {
+      final session = data.session;
+
+      if (session != null) {
+        emit(AuthAuthenticated());
+      } else {
+        emit(AuthUnAuthenticated());
+      }
+    });
   }
 }

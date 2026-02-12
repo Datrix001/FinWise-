@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButton extends StatefulWidget {
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final String? title;
   final bool isDiff;
   final Widget? widget;
