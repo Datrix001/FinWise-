@@ -28,6 +28,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
+      buildWhen: (previous, current) =>
+          current is AuthInitialState || current is AuthLoadingState,
+      listenWhen: (previous, current) =>
+          current is AuthFailureState && previous is! AuthFailureState,
       listener: (context, state) {
         if (state is AuthFailureState) {
           ScaffoldMessenger.of(

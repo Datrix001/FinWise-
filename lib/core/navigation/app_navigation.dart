@@ -5,13 +5,18 @@ import 'package:finwise2/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:finwise2/features/auth/presentation/cubit/auth_state.dart';
 import 'package:finwise2/features/auth/presentation/screens/login_screen.dart';
 import 'package:finwise2/features/auth/presentation/screens/signup_screen.dart';
+import 'package:finwise2/features/friend/presentation/screens/friend_screen.dart';
+import 'package:finwise2/features/group/presentation/screens/group_screen.dart';
 import 'package:finwise2/features/home/presentation/screens/home.dart';
+import 'package:finwise2/features/home/presentation/screens/home_screen.dart';
+import 'package:finwise2/features/profile/presentation/screens/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class AppNavigation {
   static final _routerNotifier = _AuthRouterNotifier(getIt<AuthCubit>());
   static final GoRouter route = GoRouter(
+    debugLogDiagnostics: true,
     initialLocation: LoginScreen.routeName,
     refreshListenable: _routerNotifier,
     routes: [
@@ -24,6 +29,22 @@ class AppNavigation {
         builder: (context, state) => SignUpScreen(),
       ),
       GoRoute(path: Home.routeName, builder: (context, state) => Home()),
+      GoRoute(
+        path: FriendScreen.routeName,
+        builder: (context, state) => FriendScreen(),
+      ),
+      GoRoute(
+        path: GroupScreen.routeName,
+        builder: (context, state) => GroupScreen(),
+      ),
+      GoRoute(
+        path: SettingScreen.routeName,
+        builder: (context, state) => SettingScreen(),
+      ),
+      GoRoute(
+        path: HomeScreen.routeName,
+        builder: (context, state) => HomeScreen(),
+      ),
     ],
     redirect: (context, goState) {
       final authCubit = getIt<AuthCubit>();

@@ -1,4 +1,12 @@
+import 'package:finwise2/core/styles/app_text.dart';
+import 'package:finwise2/core/styles/app_text_style.dart';
+import 'package:finwise2/features/friend/presentation/screens/friend_screen.dart';
+import 'package:finwise2/features/group/presentation/screens/group_screen.dart';
+import 'package:finwise2/features/home/presentation/screens/home_screen.dart';
+import 'package:finwise2/features/profile/presentation/screens/setting_screen.dart';
+import 'package:finwise2/gen/colors.gen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -9,8 +17,123 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final ValueNotifier<int> currentIndex = ValueNotifier(0);
+
+  final List<Widget> screens = [
+    HomeScreen(),
+    GroupScreen(),
+    FriendScreen(),
+    SettingScreen(),
+  ];
+
+  final List<String> screensTitle = ["Welcome", "Groups", "Friends", "Setting"];
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return ValueListenableBuilder<int>(
+      valueListenable: currentIndex,
+      builder: (context, index, child) {
+        return Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 60,
+            backgroundColor: AppColors.transparent,
+            elevation: 0,
+            title: index == 0
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      appTextB2(
+                        "${screensTitle[index]},",
+                        color: AppColors.white,
+                      ),
+                      appTextS2(
+                        "Mayank",
+                        color: AppColors.white.withOpacity(0.9),
+                      ),
+                    ],
+                  )
+                : appTextS2(screensTitle[index], color: AppColors.white),
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [AppColors.secondary, AppColors.primary],
+                ),
+              ),
+            ),
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            selectedItemColor: AppColors.secondary,
+            unselectedItemColor: AppColors.secondary.withOpacity(0.7),
+            selectedLabelStyle: AppTextStyles.b1,
+            showSelectedLabels: false,
+            currentIndex: index,
+            onTap: (value) {
+              currentIndex.value = value;
+            },
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                activeIcon: _gradientIcon(Icons.home),
+                label: "Home",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.group),
+                activeIcon: _gradientIcon(Icons.group),
+                label: "Home",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person_add),
+                activeIcon: _gradientIcon(Icons.person_add),
+                label: "Home",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.settings),
+                activeIcon: _gradientIcon(Icons.settings),
+                label: "Home",
+              ),
+            ],
+          ),
+          floatingActionButton: index == 0 || index == 1
+              ? FloatingActionButton(
+                  onPressed: () {},
+                  backgroundColor: AppColors.transparent,
+                  child: Container(
+                    height: 56.h,
+                    width: 56.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.r),
+                      gradient: LinearGradient(
+                        begin: AlignmentGeometry.topLeft,
+                        end: AlignmentGeometry.bottomCenter,
+                        colors: [AppColors.primary, AppColors.secondary],
+                      ),
+                    ),
+                    child: Icon(Icons.add, color: AppColors.white),
+                  ),
+                )
+              : null,
+          body: screens[index],
+        );
+      },
+    );
+  }
+
+  Widget _gradientIcon(IconData icon) {
+    return ShaderMask(
+      shaderCallback: (bounds) {
+        return const LinearGradient(
+          colors: [AppColors.secondary, AppColors.primary],
+        ).createShader(bounds);
+      },
+      child: Icon(icon, color: Colors.white),
+    );
+  }
+
+  @override
+  void dispose() {
+    currentIndex.dispose();
+    super.dispose();
   }
 }
