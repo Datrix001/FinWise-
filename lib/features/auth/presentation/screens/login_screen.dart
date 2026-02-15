@@ -96,6 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 CustomButton(
+                  fullWidth: true,
                   onTap: isLoading
                       ? null
                       : () => onTap(
@@ -112,6 +113,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 CustomButton(
+                  fullWidth: true,
+
                   onTap: () {},
                   widget: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

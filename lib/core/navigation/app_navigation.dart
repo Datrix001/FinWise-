@@ -5,7 +5,9 @@ import 'package:finwise2/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:finwise2/features/auth/presentation/cubit/auth_state.dart';
 import 'package:finwise2/features/auth/presentation/screens/login_screen.dart';
 import 'package:finwise2/features/auth/presentation/screens/signup_screen.dart';
+import 'package:finwise2/features/expense/presentation/screens/add_expense.dart';
 import 'package:finwise2/features/friend/presentation/screens/friend_screen.dart';
+import 'package:finwise2/features/group/presentation/screens/add_group.dart';
 import 'package:finwise2/features/group/presentation/screens/group_screen.dart';
 import 'package:finwise2/features/home/presentation/screens/home.dart';
 import 'package:finwise2/features/home/presentation/screens/home_screen.dart';
@@ -44,6 +46,14 @@ class AppNavigation {
       GoRoute(
         path: HomeScreen.routeName,
         builder: (context, state) => HomeScreen(),
+      ),
+      GoRoute(
+        path: AddExpense.routeName,
+        builder: (context, state) => AddExpense(),
+      ),
+      GoRoute(
+        path: AddGroup.routeName,
+        builder: (context, state) => AddGroup(),
       ),
     ],
     redirect: (context, goState) {

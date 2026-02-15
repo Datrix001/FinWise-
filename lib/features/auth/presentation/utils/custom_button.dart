@@ -8,12 +8,14 @@ class CustomButton extends StatefulWidget {
   final String? title;
   final bool isDiff;
   final Widget? widget;
+  final bool fullWidth;
   const CustomButton({
     super.key,
     required this.onTap,
     this.title,
     this.isDiff = false,
     this.widget,
+    required this.fullWidth,
   });
 
   @override
@@ -27,7 +29,7 @@ class _CustomButtonState extends State<CustomButton> {
       onTap: widget.onTap,
       child: Container(
         padding: EdgeInsets.all(10.h),
-        width: double.maxFinite,
+        width: widget.fullWidth ? double.infinity : null,
         height: 50.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.r),

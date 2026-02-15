@@ -1,12 +1,15 @@
 import 'package:finwise2/core/styles/app_text.dart';
 import 'package:finwise2/core/styles/app_text_style.dart';
+import 'package:finwise2/features/expense/presentation/screens/add_expense.dart';
 import 'package:finwise2/features/friend/presentation/screens/friend_screen.dart';
+import 'package:finwise2/features/group/presentation/screens/add_group.dart';
 import 'package:finwise2/features/group/presentation/screens/group_screen.dart';
 import 'package:finwise2/features/home/presentation/screens/home_screen.dart';
 import 'package:finwise2/features/profile/presentation/screens/setting_screen.dart';
 import 'package:finwise2/gen/colors.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -34,6 +37,7 @@ class _HomeState extends State<Home> {
       valueListenable: currentIndex,
       builder: (context, index, child) {
         return Scaffold(
+          backgroundColor: AppColors.white,
           appBar: AppBar(
             toolbarHeight: 60,
             backgroundColor: AppColors.transparent,
@@ -64,10 +68,13 @@ class _HomeState extends State<Home> {
             ),
           ),
           bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: AppColors.white,
             selectedItemColor: AppColors.secondary,
             unselectedItemColor: AppColors.secondary.withOpacity(0.7),
             selectedLabelStyle: AppTextStyles.b1,
             showSelectedLabels: false,
+            showUnselectedLabels: false,
             currentIndex: index,
             onTap: (value) {
               currentIndex.value = value;
@@ -97,7 +104,9 @@ class _HomeState extends State<Home> {
           ),
           floatingActionButton: index == 0 || index == 1
               ? FloatingActionButton(
-                  onPressed: () {},
+                  onPressed: () => index == 0
+                      ? context.push(AddExpense.routeName)
+                      : context.push(AddGroup.routeName),
                   backgroundColor: AppColors.transparent,
                   child: Container(
                     height: 56.h,
