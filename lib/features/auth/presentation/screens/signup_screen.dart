@@ -127,8 +127,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 CustomButton(
                   fullWidth: true,
-
-                  onTap: () {},
+                  onTap: () => context.read<AuthCubit>().signInWithGoogle(),
                   widget: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

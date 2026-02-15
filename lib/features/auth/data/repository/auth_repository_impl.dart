@@ -21,4 +21,9 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<void> signUpWithEmailAndPassword(UserModel model) async {
     await remoteDatasources.signUpWithEmailAndPassword(model);
   }
+
+  @override
+  Future<void> signInWithGoogle() async {
+    await remoteDatasources.signInUsingGoogle();
+  }
 }

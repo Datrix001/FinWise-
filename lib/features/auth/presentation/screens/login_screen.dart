@@ -115,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 CustomButton(
                   fullWidth: true,
 
-                  onTap: () {},
+                  onTap: () => context.read<AuthCubit>().signInWithGoogle(),
                   widget: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

@@ -60,4 +60,12 @@ class AuthCubit extends Cubit<AuthState> {
       }
     });
   }
+
+  Future<void> signInWithGoogle() async {
+    try {
+      await repository.signInWithGoogle();
+    } catch (e) {
+      emit(AuthFailureState(errorMessage: e.toString()));
+    }
+  }
 }
