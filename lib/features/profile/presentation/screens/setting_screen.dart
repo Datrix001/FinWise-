@@ -39,7 +39,6 @@ class _SettingScreenState extends State<SettingScreen> {
                     textOverflow: TextOverflow.ellipsis,
                   ),
                 ),
-
                 Spacer(),
                 CustomButton(
                   fullWidth: false,
@@ -50,13 +49,15 @@ class _SettingScreenState extends State<SettingScreen> {
               ],
             ),
           ),
+
           Padding(
             padding: EdgeInsets.only(top: 30.h, bottom: 10.h),
             child: appTextB1(
               "PREFERENCES",
-              color: AppColors.black.withOpacity(0.7),
+              color: AppColors.black.withAlpha(179),
             ),
           ),
+
           CustomCard(
             child: Column(
               children: [
@@ -68,11 +69,11 @@ class _SettingScreenState extends State<SettingScreen> {
                         padding: EdgeInsets.all(5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.r),
-                          color: AppColors.black.withOpacity(0.1),
+                          color: AppColors.black.withAlpha(26),
                         ),
                         child: Icon(
                           Icons.language,
-                          color: AppColors.black.withOpacity(0.5),
+                          color: AppColors.black.withAlpha(128),
                         ),
                       ),
                       20.horizontalSpace,
@@ -80,12 +81,12 @@ class _SettingScreenState extends State<SettingScreen> {
                       Spacer(),
                       appTextB1(
                         "INR(₹)",
-                        color: AppColors.black.withOpacity(0.5),
+                        color: AppColors.black.withAlpha(128),
                       ),
                       10.horizontalSpace,
                       Icon(
                         Icons.chevron_right,
-                        color: AppColors.black.withOpacity(0.5),
+                        color: AppColors.black.withAlpha(128),
                       ),
                     ],
                   ),
@@ -94,7 +95,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   padding: EdgeInsets.symmetric(vertical: 10.h),
                   child: Divider(
                     thickness: 1,
-                    color: AppColors.black.withOpacity(0.1),
+                    color: AppColors.black.withAlpha(26),
                   ),
                 ),
                 GestureDetector(
@@ -104,11 +105,11 @@ class _SettingScreenState extends State<SettingScreen> {
                         padding: EdgeInsets.all(5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.r),
-                          color: AppColors.black.withOpacity(0.1),
+                          color: AppColors.black.withAlpha(26),
                         ),
                         child: Icon(
                           Icons.notifications,
-                          color: AppColors.black.withOpacity(0.5),
+                          color: AppColors.black.withAlpha(128),
                         ),
                       ),
                       20.horizontalSpace,
@@ -116,12 +117,12 @@ class _SettingScreenState extends State<SettingScreen> {
                       Spacer(),
                       appTextB1(
                         "Enabled",
-                        color: AppColors.black.withOpacity(0.5),
+                        color: AppColors.black.withAlpha(128),
                       ),
                       10.horizontalSpace,
                       Icon(
                         Icons.chevron_right,
-                        color: AppColors.black.withOpacity(0.5),
+                        color: AppColors.black.withAlpha(128),
                       ),
                     ],
                   ),
@@ -129,13 +130,12 @@ class _SettingScreenState extends State<SettingScreen> {
               ],
             ),
           ),
+
           Padding(
             padding: EdgeInsets.only(top: 30.h, bottom: 10.h),
-            child: appTextB1(
-              "ACCOUNT",
-              color: AppColors.black.withOpacity(0.7),
-            ),
+            child: appTextB1("ACCOUNT", color: AppColors.black.withAlpha(179)),
           ),
+
           CustomCard(
             child: Column(
               children: [
@@ -146,20 +146,19 @@ class _SettingScreenState extends State<SettingScreen> {
                         padding: EdgeInsets.all(5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.r),
-                          color: AppColors.black.withOpacity(0.1),
+                          color: AppColors.black.withAlpha(26),
                         ),
                         child: Icon(
                           Icons.lock,
-                          color: AppColors.black.withOpacity(0.5),
+                          color: AppColors.black.withAlpha(128),
                         ),
                       ),
                       20.horizontalSpace,
                       appTextS3("Privacy & Security"),
                       Spacer(),
-
                       Icon(
                         Icons.chevron_right,
-                        color: AppColors.black.withOpacity(0.5),
+                        color: AppColors.black.withAlpha(128),
                       ),
                     ],
                   ),
@@ -168,7 +167,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   padding: EdgeInsets.symmetric(vertical: 10.h),
                   child: Divider(
                     thickness: 1,
-                    color: AppColors.black.withOpacity(0.1),
+                    color: AppColors.black.withAlpha(26),
                   ),
                 ),
                 GestureDetector(
@@ -178,20 +177,19 @@ class _SettingScreenState extends State<SettingScreen> {
                         padding: EdgeInsets.all(5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.r),
-                          color: AppColors.black.withOpacity(0.1),
+                          color: AppColors.black.withAlpha(26),
                         ),
                         child: Icon(
                           Icons.question_answer_outlined,
-                          color: AppColors.black.withOpacity(0.5),
+                          color: AppColors.black.withAlpha(128),
                         ),
                       ),
                       20.horizontalSpace,
                       appTextS3("Help & Support"),
                       Spacer(),
-
                       Icon(
                         Icons.chevron_right,
-                        color: AppColors.black.withOpacity(0.5),
+                        color: AppColors.black.withAlpha(128),
                       ),
                     ],
                   ),
@@ -199,6 +197,7 @@ class _SettingScreenState extends State<SettingScreen> {
               ],
             ),
           ),
+
           20.verticalSpace,
           CustomButton(onTap: () {}, fullWidth: true, title: "Logout"),
         ],
