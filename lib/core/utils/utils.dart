@@ -1,4 +1,3 @@
-import 'package:finwise2/core/styles/app_text.dart';
 import 'package:finwise2/gen/colors.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -10,12 +10,14 @@ class CustomFormField extends StatefulWidget {
   final TextEditingController controller;
   final bool isPass;
   final Widget? prefixIcon;
+  final bool? isEnabled;
   const CustomFormField({
     super.key,
     required this.hintText,
     required this.controller,
     this.isPass = false,
     this.prefixIcon,
+    this.isEnabled = false,
   });
 
   @override
@@ -37,6 +39,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
       valueListenable: isObscure,
       builder: (context, value, child) {
         return TextFormField(
+          enabled: widget.isEnabled,
           style: AppTextStyles.b1,
           controller: widget.controller,
           obscureText: value,
@@ -65,6 +68,10 @@ class _CustomFormFieldState extends State<CustomFormField> {
             ),
             errorBorder: OutlineInputBorder(
               borderSide: BorderSide(color: AppColors.red),
+              borderRadius: BorderRadius.circular(15.r),
+            ),
+            disabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: AppColors.black.withAlpha(70)),
               borderRadius: BorderRadius.circular(15.r),
             ),
           ),

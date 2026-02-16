@@ -54,9 +54,8 @@ class AuthRemoteDatasources {
       );
 
       final googleUser = await googleSignIn.authenticate();
-      if (googleUser == null) return;
 
-      final googleAuth = await googleUser.authentication;
+      final googleAuth = googleUser.authentication;
 
       await client.auth.signInWithIdToken(
         provider: OAuthProvider.google,
