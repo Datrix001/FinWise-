@@ -1,8 +1,10 @@
 import 'package:finwise2/core/styles/app_text.dart';
 import 'package:finwise2/core/utils/utils.dart';
+import 'package:finwise2/features/expense/presentation/screens/expenses_screen.dart';
 import 'package:finwise2/gen/colors.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -86,8 +88,11 @@ class _HomeScreenState extends State<HomeScreen> {
               appTextS3("Recent Activity"),
               const Spacer(),
               TextButton(
-                onPressed: () {},
-                child: appTextB1("View All →", color: AppColors.secondary),
+                onPressed: () => context.push(ExpensesScreen.routeName),
+                child: appTextB1(
+                  "View All →",
+                  color: AppColors.primary.withBlue(10),
+                ),
               ),
             ],
           ),

@@ -1,5 +1,6 @@
 import 'package:finwise2/core/styles/app_text.dart';
 import 'package:finwise2/core/styles/app_text_style.dart';
+import 'package:finwise2/core/utils/custom_appbar.dart';
 import 'package:finwise2/core/utils/utils.dart';
 import 'package:finwise2/features/auth/presentation/utils/custom_button.dart';
 import 'package:finwise2/features/auth/presentation/utils/custom_form_field.dart';
@@ -62,23 +63,7 @@ class _AddExpenseState extends State<AddExpense> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: AppBar(
-        foregroundColor: AppColors.white,
-        toolbarHeight: 60,
-        backgroundColor: AppColors.transparent,
-        elevation: 0,
-        automaticallyImplyLeading: true,
-        title: appTextS2("Add Expense", color: AppColors.white),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [AppColors.secondary, AppColors.primary],
-            ),
-          ),
-        ),
-      ),
+      appBar: CustomAppBar(title: "Add Expene"),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20.w),
         child: Column(
