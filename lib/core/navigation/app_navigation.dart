@@ -5,7 +5,9 @@ import 'package:finwise2/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:finwise2/features/auth/presentation/cubit/auth_state.dart';
 import 'package:finwise2/features/auth/presentation/screens/login_screen.dart';
 import 'package:finwise2/features/auth/presentation/screens/signup_screen.dart';
+import 'package:finwise2/features/expense/data/models/expense_details_model.dart';
 import 'package:finwise2/features/expense/presentation/screens/add_expense.dart';
+import 'package:finwise2/features/expense/presentation/screens/expense_detail_screen.dart';
 import 'package:finwise2/features/expense/presentation/screens/expenses_screen.dart';
 import 'package:finwise2/features/friend/presentation/screens/friend_screen.dart';
 import 'package:finwise2/features/group/presentation/screens/add_group.dart';
@@ -59,6 +61,13 @@ class AppNavigation {
       GoRoute(
         path: ExpensesScreen.routeName,
         builder: (context, state) => ExpensesScreen(),
+      ),
+      GoRoute(
+        path: ExpenseDetailScreen.routeName,
+        builder: (context, state) {
+          final model = state.extra as ExpenseDetailsModel;
+          return ExpenseDetailScreen(model: model);
+        },
       ),
     ],
     redirect: (context, goState) {

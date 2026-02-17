@@ -45,7 +45,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       alignment: Alignment.center,
                       height: 80.h,
                       width: 80.w,
-                      decoration: Utils.logoBoxDecoration,
+                      decoration: Utils.logoBoxDecoration(),
                       child: appTextH2("M", color: AppColors.white),
                     ),
                     20.horizontalSpace,

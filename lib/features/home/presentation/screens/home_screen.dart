@@ -1,5 +1,7 @@
 import 'package:finwise2/core/styles/app_text.dart';
 import 'package:finwise2/core/utils/utils.dart';
+import 'package:finwise2/features/expense/data/models/expense_details_model.dart';
+import 'package:finwise2/features/expense/presentation/screens/expense_detail_screen.dart';
 import 'package:finwise2/features/expense/presentation/screens/expenses_screen.dart';
 import 'package:finwise2/gen/colors.gen.dart';
 import 'package:flutter/material.dart';
@@ -111,81 +113,92 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (context, index) {
                   final isIncome = index.isEven;
 
-                  return Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 0),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 4.w,
-                              height: 40.h,
-                              decoration: BoxDecoration(
+                  return GestureDetector(
+                    onTap: () => context.push(
+                      ExpenseDetailScreen.routeName,
+                      extra: ExpenseDetailsModel(
+                        description: "Grocery Shopping",
+                        category: "Food Dining",
+                        type: "Personal",
+                        amount: "₹1000",
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 0),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 4.w,
+                                height: 40.h,
+                                decoration: BoxDecoration(
+                                  color: isIncome
+                                      ? AppColors.secondary
+                                      : AppColors.red,
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                              ),
+                              10.horizontalSpace,
+
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 8.w,
+                                  vertical: 4.h,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: isIncome
+                                      ? AppColors.secondary.withAlpha(38)
+                                      : AppColors.red.withAlpha(38),
+                                  borderRadius: BorderRadius.circular(6.r),
+                                ),
+                                child: appTextB2(
+                                  isIncome ? "INC" : "EXP",
+                                  color: isIncome
+                                      ? AppColors.secondary
+                                      : AppColors.red,
+                                ),
+                              ),
+                              10.horizontalSpace,
+
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    appTextB1(
+                                      "Grocery Shopping",
+                                      textOverflow: TextOverflow.ellipsis,
+                                    ),
+                                    4.verticalSpace,
+                                    appTextB2(
+                                      "Personal • Feb 3",
+                                      color: AppColors.black.withAlpha(
+                                        153,
+                                      ), // 0.6
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              appTextS2(
+                                isIncome ? "+₹100" : "-₹10",
                                 color: isIncome
                                     ? AppColors.secondary
                                     : AppColors.red,
-                                borderRadius: BorderRadius.circular(6),
                               ),
-                            ),
-                            10.horizontalSpace,
-
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 8.w,
-                                vertical: 4.h,
-                              ),
-                              decoration: BoxDecoration(
-                                color: isIncome
-                                    ? AppColors.secondary.withAlpha(38)
-                                    : AppColors.red.withAlpha(38),
-                                borderRadius: BorderRadius.circular(6.r),
-                              ),
-                              child: appTextB2(
-                                isIncome ? "INC" : "EXP",
-                                color: isIncome
-                                    ? AppColors.secondary
-                                    : AppColors.red,
-                              ),
-                            ),
-                            10.horizontalSpace,
-
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  appTextB1(
-                                    "Grocery Shopping",
-                                    textOverflow: TextOverflow.ellipsis,
-                                  ),
-                                  4.verticalSpace,
-                                  appTextB2(
-                                    "Personal • Feb 3",
-                                    color: AppColors.black.withAlpha(
-                                      153,
-                                    ), // 0.6
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                            appTextS2(
-                              isIncome ? "+₹100" : "-₹10",
-                              color: isIncome
-                                  ? AppColors.secondary
-                                  : AppColors.red,
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      12.verticalSpace,
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20.w),
-                        child: Divider(
-                          thickness: 1,
-                          color: AppColors.black.withAlpha(26),
+                        12.verticalSpace,
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20.w),
+                          child: Divider(
+                            thickness: 1,
+                            color: AppColors.black.withAlpha(26),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   );
                 },
               ),
