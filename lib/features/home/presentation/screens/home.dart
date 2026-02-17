@@ -104,7 +104,7 @@ class _HomeState extends State<Home> {
               ),
             ],
           ),
-          floatingActionButton: index == 0 || index == 1
+          floatingActionButton: index == 0 || index == 2
               ? FloatingActionButton(
                   onPressed: () => index == 0
                       ? context.push(AddExpense.routeName)
