@@ -67,7 +67,7 @@ class ExpenseUtils {
   static Widget expenseTitle(String title) {
     return Padding(
       padding: EdgeInsets.only(top: 20.h, bottom: 10.h),
-      child: appTextB1(title, color: AppColors.black.withAlpha(90)),
+      child: Utils.customTitle(title),
     );
   }
 }

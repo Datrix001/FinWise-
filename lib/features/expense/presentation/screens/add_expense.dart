@@ -80,7 +80,7 @@ class _AddExpenseState extends State<AddExpense> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  appTextB1("AMOUNT", color: AppColors.black.withAlpha(120)),
+                  Utils.customTitle("amount"),
                   TextFormField(
                     controller: amountController,
                     style: AppTextStyles.h1,
