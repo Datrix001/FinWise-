@@ -1,6 +1,7 @@
 import 'package:finwise2/core/styles/app_text.dart';
 import 'package:finwise2/core/styles/app_text_style.dart';
 import 'package:finwise2/features/expense/presentation/screens/add_expense.dart';
+import 'package:finwise2/features/expense/presentation/screens/expense_analyse_screen.dart';
 import 'package:finwise2/features/friend/presentation/screens/friend_screen.dart';
 import 'package:finwise2/features/group/presentation/screens/add_group.dart';
 import 'package:finwise2/features/group/presentation/screens/group_screen.dart';
@@ -24,12 +25,12 @@ class _HomeState extends State<Home> {
 
   final List<Widget> screens = [
     HomeScreen(),
+    ExpenseAnalyseScreen(),
     GroupScreen(),
-    FriendScreen(),
     SettingScreen(),
   ];
 
-  final List<String> screensTitle = ["Welcome", "Groups", "Friends", "Setting"];
+  final List<String> screensTitle = ["Welcome", "Analyse", "Groups", "Setting"];
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +69,7 @@ class _HomeState extends State<Home> {
             ),
           ),
           bottomNavigationBar: BottomNavigationBar(
+            iconSize: 25.h,
             type: BottomNavigationBarType.fixed,
             backgroundColor: AppColors.white,
             selectedItemColor: AppColors.secondary,
@@ -81,24 +83,24 @@ class _HomeState extends State<Home> {
             },
             items: [
               BottomNavigationBarItem(
-                icon: Icon(Icons.home),
+                icon: Icon(Icons.home_outlined),
                 activeIcon: _gradientIcon(Icons.home),
                 label: "Home",
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.group),
+                icon: Icon(Icons.analytics_outlined),
+                activeIcon: _gradientIcon(Icons.analytics),
+                label: "Analyse",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.group_outlined),
                 activeIcon: _gradientIcon(Icons.group),
-                label: "Home",
+                label: "Group",
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.person_add),
-                activeIcon: _gradientIcon(Icons.person_add),
-                label: "Home",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
+                icon: Icon(Icons.settings_outlined),
                 activeIcon: _gradientIcon(Icons.settings),
-                label: "Home",
+                label: "Settings",
               ),
             ],
           ),

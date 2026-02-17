@@ -3,11 +3,13 @@ import 'package:finwise2/core/utils/utils.dart';
 import 'package:finwise2/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:finwise2/features/auth/presentation/cubit/auth_state.dart';
 import 'package:finwise2/features/auth/presentation/utils/custom_button.dart';
+import 'package:finwise2/features/friend/presentation/screens/friend_screen.dart';
 import 'package:finwise2/features/profile/presentation/utils/custom_card.dart';
 import 'package:finwise2/gen/colors.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -158,6 +160,38 @@ class _SettingScreenState extends State<SettingScreen> {
               CustomCard(
                 child: Column(
                   children: [
+                    GestureDetector(
+                      onTap: () => context.push(FriendScreen.routeName),
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.r),
+                              color: AppColors.black.withAlpha(26),
+                            ),
+                            child: Icon(
+                              Icons.person_add,
+                              color: AppColors.black.withAlpha(128),
+                            ),
+                          ),
+                          20.horizontalSpace,
+                          appTextS3("Add Friends"),
+                          Spacer(),
+                          Icon(
+                            Icons.chevron_right,
+                            color: AppColors.black.withAlpha(128),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10.h),
+                      child: Divider(
+                        thickness: 1,
+                        color: AppColors.black.withAlpha(26),
+                      ),
+                    ),
                     GestureDetector(
                       child: Row(
                         children: [
