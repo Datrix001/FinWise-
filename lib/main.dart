@@ -1,6 +1,7 @@
 import 'package:finwise2/core/di/di.dart';
 import 'package:finwise2/core/navigation/app_navigation.dart';
 import 'package:finwise2/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:finwise2/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -28,7 +29,10 @@ class MainApp extends StatelessWidget {
 
       builder: (context, child) {
         return MultiBlocProvider(
-          providers: [BlocProvider<AuthCubit>.value(value: getIt<AuthCubit>())],
+          providers: [
+            BlocProvider<AuthCubit>.value(value: getIt<AuthCubit>()),
+            BlocProvider<ProfileCubit>.value(value: getIt<ProfileCubit>()),
+          ],
           child: MaterialApp.router(
             debugShowCheckedModeBanner: false,
             routerConfig: AppNavigation.route,

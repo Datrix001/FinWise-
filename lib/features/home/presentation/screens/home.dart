@@ -5,9 +5,12 @@ import 'package:finwise2/features/expense/presentation/screens/expense_analyse_s
 import 'package:finwise2/features/group/presentation/screens/add_group.dart';
 import 'package:finwise2/features/group/presentation/screens/group_screen.dart';
 import 'package:finwise2/features/home/presentation/screens/home_screen.dart';
+import 'package:finwise2/features/profile/presentation/cubit/profile_cubit.dart';
+import 'package:finwise2/features/profile/presentation/cubit/profile_state.dart';
 import 'package:finwise2/features/profile/presentation/screens/setting_screen.dart';
 import 'package:finwise2/gen/colors.gen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
@@ -32,39 +35,90 @@ class _HomeState extends State<Home> {
   final List<String> screensTitle = ["Welcome", "Analyse", "Groups", "Setting"];
 
   @override
+  void initState() {
+    context.read<ProfileCubit>().getUserData();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<int>(
       valueListenable: currentIndex,
       builder: (context, index, child) {
         return Scaffold(
           backgroundColor: AppColors.white,
-          appBar: AppBar(
-            toolbarHeight: 60,
-            backgroundColor: AppColors.transparent,
-            elevation: 0,
-            title: index == 0
-                ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      appTextB2(
-                        "${screensTitle[index]},",
-                        color: AppColors.white,
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(60),
+            child: BlocBuilder<ProfileCubit, ProfileState>(
+              buildWhen: (previous, current) =>
+                  current is ProfileLoadedState ||
+                  current is ProfileInitialState,
+              builder: (context, state) {
+                if (state is ProfileLoadedState) {
+                  final data = state.model;
+                  return AppBar(
+                    toolbarHeight: 60,
+                    backgroundColor: AppColors.transparent,
+                    elevation: 0,
+                    title: index == 0
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              appTextB2(
+                                "${screensTitle[index]},",
+                                color: AppColors.white,
+                              ),
+                              appTextS2(
+                                data.name,
+                                color: AppColors.white.withOpacity(0.9),
+                              ),
+                            ],
+                          )
+                        : appTextS2(
+                            screensTitle[index],
+                            color: AppColors.white,
+                          ),
+                    flexibleSpace: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [AppColors.secondary, AppColors.primary],
+                        ),
                       ),
-                      appTextS2(
-                        "Mayank",
-                        color: AppColors.white.withOpacity(0.9),
+                    ),
+                  );
+                }
+                return AppBar(
+                  toolbarHeight: 60,
+                  backgroundColor: AppColors.transparent,
+                  elevation: 0,
+                  title: index == 0
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            appTextB2(
+                              "${screensTitle[index]},",
+                              color: AppColors.white,
+                            ),
+                            appTextS2(
+                              "",
+                              color: AppColors.white.withOpacity(0.9),
+                            ),
+                          ],
+                        )
+                      : appTextS2(screensTitle[index], color: AppColors.white),
+                  flexibleSpace: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [AppColors.secondary, AppColors.primary],
                       ),
-                    ],
-                  )
-                : appTextS2(screensTitle[index], color: AppColors.white),
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [AppColors.secondary, AppColors.primary],
-                ),
-              ),
+                    ),
+                  ),
+                );
+              },
             ),
           ),
           bottomNavigationBar: BottomNavigationBar(

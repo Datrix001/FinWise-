@@ -1,4 +1,5 @@
 import 'package:finwise2/core/styles/app_text.dart';
+import 'package:finwise2/core/utils/utils.dart';
 import 'package:finwise2/features/auth/data/model/user_model.dart';
 import 'package:finwise2/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:finwise2/features/auth/presentation/cubit/auth_state.dart';
@@ -36,9 +37,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             current is AuthFailureState && previous is! AuthFailureState,
         listener: (context, state) {
           if (state is AuthFailureState) {
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: appTextB1(state.errorMessage)));
+            Utils.showError(context, state.errorMessage);
           }
         },
         builder: (context, state) {

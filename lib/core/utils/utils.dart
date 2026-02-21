@@ -56,4 +56,10 @@ class Utils {
       color: AppColors.black.withAlpha(100),
     );
   }
+
+  static void showError(BuildContext context, String message) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: appTextB1(message)));
+  }
 }
