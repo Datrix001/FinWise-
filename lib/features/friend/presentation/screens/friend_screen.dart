@@ -1,4 +1,3 @@
-import 'package:finwise2/core/styles/app_text.dart';
 import 'package:finwise2/core/utils/custom_appbar.dart';
 import 'package:flutter/material.dart';
 

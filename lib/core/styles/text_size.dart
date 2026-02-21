@@ -1,16 +1,14 @@
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 final class AppFontSize {
   AppFontSize._();
 
-  static final size10 = 10.sp;
-  static final size12 = 12.sp;
-  static final size14 = 14.sp;
-  static final size16 = 16.sp;
-  static final size18 = 18.sp;
-  static final size20 = 20.sp;
-  static final size24 = 24.sp;
-  static final size32 = 32.sp;
-  static final size40 = 40.sp;
-  static final size64 = 64.sp;
+  static const size10 = 10.0;
+  static const size12 = 12.0;
+  static const size14 = 14.0;
+  static const size16 = 16.0;
+  static const size18 = 18.0;
+  static const size20 = 20.0;
+  static const size24 = 24.0;
+  static const size32 = 32.0;
+  static const size40 = 40.0;
+  static const size64 = 64.0;
 }

@@ -2,7 +2,6 @@ import 'package:finwise2/core/styles/app_text.dart';
 import 'package:finwise2/core/styles/app_text_style.dart';
 import 'package:finwise2/features/expense/presentation/screens/add_expense.dart';
 import 'package:finwise2/features/expense/presentation/screens/expense_analyse_screen.dart';
-import 'package:finwise2/features/friend/presentation/screens/friend_screen.dart';
 import 'package:finwise2/features/group/presentation/screens/add_group.dart';
 import 'package:finwise2/features/group/presentation/screens/group_screen.dart';
 import 'package:finwise2/features/home/presentation/screens/home_screen.dart';

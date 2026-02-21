@@ -17,7 +17,7 @@ class CustomFormField extends StatefulWidget {
     required this.controller,
     this.isPass = false,
     this.prefixIcon,
-    this.isEnabled = false,
+    this.isEnabled = true,
   });
 
   @override
